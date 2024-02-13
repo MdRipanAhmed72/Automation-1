@@ -1,8 +1,6 @@
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webelement import WebElement
-
 
 def Login_valid_function_test():
     # STEP1 FOR THE TEST
@@ -12,15 +10,24 @@ def Login_valid_function_test():
     driver.get ( "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login" )
     time.sleep ( 20 )
 
-    User_name = driver.find_element ( By.NAME , "username" )
+    User_name = driver.find_element ( By. NAME, "username" )
     User_name.send_keys ( "Admin" )
 
-    User_pasword = driver.find_element ( By.NAME , "password" )
+    User_pasword = driver.find_element ( By.NAME, "password" )
     User_pasword.send_keys ( "admin123" )
 
     Login_button = driver.find_element ( By.CSS_SELECTOR , ".orangehrm-login-button" )
     Login_button.click ()
     time.sleep ( 20 )
+
+    expectexd_url = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index"
+    actual_url = driver.current_url
+
+    if expectexd_url == actual_url:
+        print("Login successfully")
+    else:
+        print("login failed")
+
     driver.close ()
 
 
@@ -56,4 +63,5 @@ def test_fast_one_invliad_issue():
 
     driver.close()
 
-test_fast_one_invliad_issue()
+#test_fast_one_invliad_issue()
+Login_valid_function_test()
